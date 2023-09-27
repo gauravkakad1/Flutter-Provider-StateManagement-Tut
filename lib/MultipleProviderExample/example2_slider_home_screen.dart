@@ -17,7 +17,7 @@ class _Example2SliderHomeScreenState extends State<Example2SliderHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Slider Example"),
+        title: const Text("Slider Example"),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -40,14 +40,13 @@ class _Example2SliderHomeScreenState extends State<Example2SliderHomeScreen> {
                 padding: const EdgeInsets.all(15.0),
                 child: Row(
                   children: [
-
                     Expanded(
                       child: Container(
                         height: 100,
                         decoration: BoxDecoration(
                             color: Colors.orangeAccent.withOpacity(value.value)
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Text("Container1"),
                         ),
                       ),
@@ -58,7 +57,7 @@ class _Example2SliderHomeScreenState extends State<Example2SliderHomeScreen> {
                         decoration: BoxDecoration(
                             color: Colors.greenAccent.withOpacity(value.value)
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Text("Container2"),
                         ),
                       ),
