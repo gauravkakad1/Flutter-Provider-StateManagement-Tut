@@ -15,6 +15,7 @@ class _Example2SliderHomeScreenState extends State<Example2SliderHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Slider Example"),
