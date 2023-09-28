@@ -7,6 +7,8 @@ import 'package:provider_tutorials/MultipleProviderExample/Provider/slider_provi
 import 'package:provider_tutorials/MultipleProviderExample/example2_slider_home_screen.dart';
 import 'package:provider_tutorials/ProviderExample1/Provider/count_provider.dart';
 import 'package:provider_tutorials/ProviderExample1/provider_home_screen.dart';
+import 'package:provider_tutorials/ValueNotifier&LoginPage/auth_provider.dart';
+import 'package:provider_tutorials/ValueNotifier&LoginPage/login_screen.dart';
 
 import 'FavouriteApp/fav_provider.dart';
 
@@ -26,6 +28,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_)=> SliderProvider()),
         ChangeNotifierProvider(create: (_)=> FavProvider()),
         ChangeNotifierProvider(create: (_)=> ThemeChangerProvider()),
+        ChangeNotifierProvider(create: (_)=> AuthProvider()),
       ],
         child:  Builder(
           builder: (BuildContext context) {
@@ -42,7 +45,7 @@ class MyApp extends StatelessWidget {
                 brightness: Brightness.dark,
                   iconTheme: IconThemeData(color: Colors.white)
               ),
-              home: ThemeScreen(),
+              home: LoginScreen(),
             );
 
           },
