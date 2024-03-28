@@ -45,5 +45,9 @@ class AuthProvider with ChangeNotifier{
       checkLogin(false);
     }
   }
+  int cnt=0;
+  void add(){
+    cnt++;
+    notifyListeners();  }
 
 }

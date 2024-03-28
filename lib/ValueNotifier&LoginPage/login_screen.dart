@@ -16,6 +16,13 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    emailController.text = "eve.holt@reqres.in";
+    passwordController.text = "cityslicka"; 
+  }
   void _navigateToHomeScreen() {
     Navigator.push(context,
       MaterialPageRoute(
@@ -25,6 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
   @override
   Widget build(BuildContext context) {
+    print('build');
     final authProvider = Provider.of<AuthProvider>(context,listen: false);
     ValueNotifier<bool> obscureValue = ValueNotifier<bool>(false);
     return Scaffold(
@@ -39,12 +47,19 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Welcome",style: TextStyle(fontSize: 25 , fontWeight: FontWeight.bold), ),
+              Consumer<AuthProvider>(
+                builder: (context, value, child) {
+                  print('text is building');
+                  return Text("Welcome ${authProvider.cnt}",style: TextStyle(fontSize: 25 , fontWeight: FontWeight.bold), );
+                },
+              ),
+              
               SizedBox(height: 40,),
               TextFormField(
                 controller: emailController,
                 decoration: InputDecoration(
                   hintText: "eve.holt@reqres.in",
+                  
                   label: Text("Email"),
                 ),
 
@@ -53,6 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ValueListenableBuilder(
                   valueListenable: obscureValue,
                   builder: (context, value, child) {
+                    print('textformfield2 is building');
                     return TextFormField(
                       controller: passwordController,
                       obscureText: obscureValue.value,
@@ -82,6 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Container(
                   child: Consumer(
                     builder: (context, value, child) {
+                      print("button is loading ${authProvider.isloading}");
                       return Center(
                         child: authProvider.isloading?CircularProgressIndicator(color: Colors.white,)
                             :Text("Log in " , style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
@@ -100,6 +117,13 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+       onPressed: (){
+        authProvider.add();
+       },
+       child: Icon(Icons.add)
+          
+    ),
     );
   }
 }
